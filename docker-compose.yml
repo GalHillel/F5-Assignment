@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # the nginx server
+  nginx:
+    build: ./nginx
+    container_name: nginx-server
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - app-network
+
+  # test runner
+  tests:
+    build: ./tests
+    container_name: test-runner
+    depends_on:
+      - nginx
+    networks:
+      - app-network
+
+# define custom network so containers can talk to each other by name
+networks:
+  app-network:
+    driver: bridge
