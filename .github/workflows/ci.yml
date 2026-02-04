@@ -1,0 +1,36 @@
+name: ci pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: build and run with docker compose
+        # using --exit-code-from to fail the pipeline if tests fail
+        run: docker-compose up --build --exit-code-from tests
+
+      - name: create success artifact
+        if: success()
+        run: echo "tests passed successfully" > succeeded
+
+      - name: create failure artifact
+        if: failure()
+        run: echo "tests failed" > fail
+
+      - name: upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            succeeded
+            fail
