@@ -1,5 +1,5 @@
-# ubuntu base image
-FROM ubuntu:latest
+# ubuntu base image - date for stability
+FROM ubuntu:24.04
 
 # cleaning up apt cache to keep image small
 RUN apt-get update && \
