@@ -1,7 +1,5 @@
 # DevOps Intern – Home Assignment
 
-This repository contains a containerized Nginx server configuration and a Python-based test suite, orchestrated using Docker Compose. The project demonstrates infrastructure-as-code, automated testing, and CI/CD practices.
-
 ## How to Run
 ### Prerequisites
 * Docker & Docker Compose installed on your machine.
