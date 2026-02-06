@@ -11,7 +11,29 @@ success_url = "http://nginx:8080"
 error_url = "http://nginx:8081"
 https_url = "https://nginx:443"
 
+def wait_for_service(url, retries=20, delay=1):
+    # wait for the service to be ready to accept connections
+    print(f"Waiting for {url} to be ready")
+    for i in range(retries):
+        try:
+            # check if we can connect
+            requests.get(url, timeout=2)
+            print(f"Service is ready after {i+1} attempts.")
+            return True
+        except requests.exceptions.ConnectionError:
+            print(f"Service not ready yet, retrying ({i+1}/{retries})")
+            time.sleep(delay)
+        except Exception as e:
+            print(f"Unexpected error while waiting: {e}")
+            time.sleep(delay)
+    return False
+
 def run_tests():
+
+    if not wait_for_service(success_url):
+        print("Timeout waiting for Nginx to start.")
+        return False
+
     print("starting tests")
     
     # test 1: basic http at 8080
