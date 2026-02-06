@@ -1,9 +1,5 @@
 # DevOps Intern – Home Assignment
 ## How to Run
-### Prerequisites
-* Docker & Docker Compose installed on your machine.
-
-### Execution
 Run the following command to build the images and start the services:
 ```bash
 docker compose up --build
