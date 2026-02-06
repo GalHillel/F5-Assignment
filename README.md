@@ -22,7 +22,7 @@ The project consists of the following files and directories:
 2. **Check Test Results**: The test script will exit with a non-zero code if any tests fail.
 
 ## GitHub Repository & CI
-- A GitHub Actions workflow set up to build the Docker images and run the tests. Based on the test results, it will decide to push or not.
+- A GitHub Actions workflow set up to build the Docker images and run the tests. Based on the test results, generate the artifact succeed for fail
 
 ## Advanced Requirements
 - Implement HTTPS support for the Nginx server using a self-signed certificate.
