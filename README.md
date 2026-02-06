@@ -1,5 +1,4 @@
 # DevOps Intern – Home Assignment
-
 ## How to Run
 ### Prerequisites
 * Docker & Docker Compose installed on your machine.
